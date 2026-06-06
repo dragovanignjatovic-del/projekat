@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moj nalog – Find Me Qwic</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">FIND ME <span>QWIC</span></a>
+    <nav>
+      <a href="/postavi-oglas.html" id="nav-oglas" class="btn btn-accent btn-sm" style="display:none">+ Postavi oglas</a>
+      <a href="/registracija.html" id="nav-register" class="btn btn-outline btn-sm">Registracija</a>
+      <a href="/registracija.html#login" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
+      <div id="nav-user" style="display:none; align-items:center; gap:0.5rem;">
+        <a href="/nalog.html" id="nav-username" class="btn btn-outline btn-sm"></a>
+        <button onclick="logout()" class="btn btn-sm" style="background:#f1f5f9;color:#64748b;">Odjavi se</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="nalog-grid">
+    <aside class="nalog-menu">
+      <a href="#licni-podaci" class="active" onclick="showSection('licni-podaci', this)">👤 Lični podaci</a>
+      <a href="#kontakt" onclick="showSection('kontakt', this)">📞 Kontakt</a>
+      <a href="#lozinka" onclick="showSection('lozinka', this)">🔒 Lozinka</a>
+      <a href="#email" onclick="showSection('email', this)">✉️ Email</a>
+      <a href="#moji-oglasi" onclick="showSection('moji-oglasi', this)">📋 Moji oglasi</a>
+    </aside>
+
+    <div class="nalog-content">
+      <div id="nalog-alert" class="alert" style="display:none"></div>
+
+      <!-- LICNI PODACI -->
+      <section id="section-licni-podaci">
+        <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1.5rem;">Lični podaci</h2>
+        <form id="form-nalog" onsubmit="saveNalog(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Ime</label>
+              <input type="text" id="nalog-ime" name="ime" placeholder="Vaše ime">
+            </div>
+            <div class="form-group">
+              <label>Prezime</label>
+              <input type="text" id="nalog-prezime" name="prezime" placeholder="Vaše prezime">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Adresa</label>
+            <input type="text" id="nalog-adresa" name="adresa" placeholder="Ulica i broj">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Poštanski broj</label>
+              <input type="text" id="nalog-postanski_broj" name="postanski_broj" placeholder="11000">
+            </div>
+            <div class="form-group">
+              <label>Država</label>
+              <select id="nalog-drzava" name="drzava">
+                <option value="Srbija">Srbija</option>
+                <option value="Bosna i Hercegovina">Bosna i Hercegovina</option>
+                <option value="Crna Gora">Crna Gora</option>
+                <option value="Hrvatska">Hrvatska</option>
+                <option value="Severna Makedonija">Severna Makedonija</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Okrug</label>
+              <input type="text" id="nalog-okrug" name="okrug" placeholder="Okrug">
+            </div>
+            <div class="form-group">
+              <label>Grad</label>
+              <input type="text" id="nalog-grad" name="grad" placeholder="Grad">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label>Web sajt</label>
+              <input type="url" id="nalog-web_sajt" name="web_sajt" placeholder="https://...">
+            </div>
+            <div class="form-group">
+              <label>Datum rodjenja</label>
+              <input type="date" id="nalog-datum_rodjenja" name="datum_rodjenja">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary">Sačuvaj izmene</button>
+        </form>
+      </section>
+
+      <!-- KONTAKT -->
+      <section id="section-kontakt" style="display:none">
+        <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1.5rem;">Kontakt informacije</h2>
+        <form onsubmit="saveKontakt(event)">
+          <div class="form-group">
+            <label>Mobilni telefon</label>
+            <input type="tel" id="nalog-telefon" name="telefon" placeholder="+381 6x xxx xxxx">
+          </div>
+          <div class="form-group" style="display:flex; align-items:center; gap:0.5rem;">
+            <input type="checkbox" id="disable-email" style="width:auto">
+            <label for="disable-email" style="margin:0; font-weight:normal;">Onemogući kontakt putem emaila</label>
+          </div>
+          <button type="submit" class="btn btn-primary">Sačuvaj</button>
+        </form>
+      </section>
+
+      <!-- LOZINKA -->
+      <section id="section-lozinka" style="display:none">
+        <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1.5rem;">Promena lozinke</h2>
+        <form onsubmit="changeLozinka(event)">
+          <div class="form-group">
+            <label>Stara lozinka</label>
+            <input type="password" id="stara-lozinka" placeholder="Stara lozinka" required>
+          </div>
+          <div class="form-group">
+            <label>Nova lozinka</label>
+            <input type="password" id="nova-lozinka" placeholder="Nova lozinka (min. 6 kar.)" required minlength="6">
+          </div>
+          <div class="form-group">
+            <label>Potvrdi novu lozinku</label>
+            <input type="password" id="nova-lozinka2" placeholder="Ponovi novu lozinku" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Promeni lozinku</button>
+        </form>
+      </section>
+
+      <!-- EMAIL -->
+      <section id="section-email" style="display:none">
+        <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1.5rem;">Promena emaila</h2>
+        <form onsubmit="changeEmail(event)">
+          <div class="form-group">
+            <label>Novi email</label>
+            <input type="email" id="novi-email" placeholder="novi@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Lozinka (potvrda)</label>
+            <input type="password" id="email-lozinka" placeholder="Vaša lozinka" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Promeni email</button>
+        </form>
+      </section>
+
+      <!-- MOJI OGLASI -->
+      <section id="section-moji-oglasi" style="display:none">
+        <h2 style="font-size:1.3rem; font-weight:700; margin-bottom:1.5rem;">Moji oglasi</h2>
+        <div id="moji-oglasi-list"><div class="spinner"></div></div>
+      </section>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col"><h4>FIND ME QWIC</h4><p>Srpski poslovni imenik</p></div>
+  </div>
+  <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
+</footer>
+
+<script src="/js/auth.js"></script>
+<script>
+let currentUser = null;
+
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!requireAuth()) return;
+  updateNav();
+  currentUser = await fetchMe();
+  if (!currentUser) { window.location.href = '/registracija.html#login'; return; }
+  populateForm(currentUser);
+});
+
+function populateForm(user) {
+  ['ime','prezime','adresa','postanski_broj','drzava','okrug','grad','web_sajt','datum_rodjenja','telefon'].forEach(k => {
+    const el = document.getElementById('nalog-' + k);
+    if (el && user[k]) el.value = user[k];
+  });
+}
+
+function showSection(id, link) {
+  document.querySelectorAll('.nalog-content section').forEach(s => s.style.display = 'none');
+  document.getElementById('section-' + id).style.display = 'block';
+  document.querySelectorAll('.nalog-menu a').forEach(a => a.classList.remove('active'));
+  if (link) link.classList.add('active');
+  if (id === 'moji-oglasi') loadMojiOglasi();
+  return false;
+}
+
+async function saveNalog(e) {
+  e.preventDefault();
+  const form = e.target;
+  const data = {};
+  form.querySelectorAll('input, select').forEach(el => { if (el.name) data[el.name] = el.value; });
+  const alertEl = document.getElementById('nalog-alert');
+  try {
+    const res = await fetch('/api/auth/nalog', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() },
+      body: JSON.stringify(data)
+    });
+    const result = await res.json();
+    if (!res.ok) { showAlert('error', result.error); return; }
+    saveUser({ ...currentUser, ...result });
+    showAlert('success', 'Podaci su uspesno sacuvani!');
+  } catch(err) { showAlert('error', 'Greska pri cuvanju.'); }
+}
+
+async function saveKontakt(e) {
+  e.preventDefault();
+  const telefon = document.getElementById('nalog-telefon').value;
+  try {
+    const res = await fetch('/api/auth/nalog', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() },
+      body: JSON.stringify({ ...currentUser, telefon })
+    });
+    if (res.ok) showAlert('success', 'Kontakt podaci sacuvani!');
+    else showAlert('error', 'Greska pri cuvanju.');
+  } catch(err) { showAlert('error', 'Greska.'); }
+}
+
+async function changeLozinka(e) {
+  e.preventDefault();
+  const stara = document.getElementById('stara-lozinka').value;
+  const nova = document.getElementById('nova-lozinka').value;
+  const nova2 = document.getElementById('nova-lozinka2').value;
+  if (nova !== nova2) { showAlert('error', 'Nove lozinke se ne poklapaju'); return; }
+  try {
+    const res = await fetch('/api/auth/nalog', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() },
+      body: JSON.stringify({ stara_lozinka: stara, nova_lozinka: nova })
+    });
+    const result = await res.json();
+    if (!res.ok) { showAlert('error', result.error); return; }
+    showAlert('success', 'Lozinka uspesno promenjena!');
+    e.target.reset();
+  } catch(err) { showAlert('error', 'Greska.'); }
+}
+
+async function changeEmail(e) {
+  e.preventDefault();
+  const novi_email = document.getElementById('novi-email').value;
+  const lozinka = document.getElementById('email-lozinka').value;
+  try {
+    const res = await fetch('/api/auth/nalog', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + getToken() },
+      body: JSON.stringify({ novi_email, stara_lozinka: lozinka })
+    });
+    const result = await res.json();
+    if (!res.ok) { showAlert('error', result.error); return; }
+    showAlert('success', 'Email uspesno promenjen!');
+    e.target.reset();
+  } catch(err) { showAlert('error', 'Greska.'); }
+}
+
+async function loadMojiOglasi() {
+  const container = document.getElementById('moji-oglasi-list');
+  try {
+    const res = await fetch('/api/oglasi', { headers: { 'Authorization': 'Bearer ' + getToken() } });
+    const oglasi = await res.json();
+    const moji = oglasi.filter(o => o.korisnik_id === currentUser.id);
+    if (moji.length === 0) { container.innerHTML = '<p style="color:var(--text-muted)">Nemate postavljenih oglasa.</p>'; return; }
+    container.innerHTML = moji.map(o => `
+      <div style="display:flex; justify-content:space-between; align-items:center; padding:1rem; border:1px solid var(--border); border-radius:var(--radius); margin-bottom:0.75rem;">
+        <div>
+          <strong>${o.naziv}</strong>
+          <div style="font-size:0.85rem; color:var(--text-muted)">${o.grad || ''} • ${o.vrsta_privrede || ''} • ${o.broj_poseta} poseta</div>
+        </div>
+        <div style="display:flex; gap:0.5rem;">
+          <a href="/oglas.html?id=${o.id}" class="btn btn-outline btn-sm">Pogledaj</a>
+          <button onclick="deleteOglas(${o.id})" class="btn btn-danger btn-sm">Obriši</button>
+        </div>
+      </div>`).join('');
+  } catch(err) { container.innerHTML = '<p>Greska pri ucitavanju.</p>'; }
+}
+
+async function deleteOglas(id) {
+  if (!confirm('Da li ste sigurni da zelite da obrisete oglas?')) return;
+  try {
+    await fetch('/api/oglasi/' + id, { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + getToken() } });
+    loadMojiOglasi();
+  } catch(err) { alert('Greska pri brisanju.'); }
+}
+
+function showAlert(type, msg) {
+  const el = document.getElementById('nalog-alert');
+  el.className = 'alert alert-' + type;
+  el.textContent = msg;
+  el.style.display = 'block';
+  setTimeout(() => el.style.display = 'none', 4000);
+}
+</script>
+</body>
+</html>

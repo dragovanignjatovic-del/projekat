@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postavi oglas – Find Me Qwic</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">FIND ME <span>QWIC</span></a>
+    <nav>
+      <a href="/postavi-oglas.html" id="nav-oglas" class="btn btn-accent btn-sm" style="display:none">+ Postavi oglas</a>
+      <a href="/registracija.html" id="nav-register" class="btn btn-outline btn-sm">Registracija</a>
+      <a href="/registracija.html#login" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
+      <div id="nav-user" style="display:none; align-items:center; gap:0.5rem;">
+        <a href="/nalog.html" id="nav-username" class="btn btn-outline btn-sm"></a>
+        <button onclick="logout()" class="btn btn-sm" style="background:#f1f5f9;color:#64748b;">Odjavi se</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container" style="max-width:800px;">
+  <h1 style="font-size:1.6rem; font-weight:800; margin-bottom:1.5rem;">Postavi oglas</h1>
+
+  <div id="form-alert" class="alert" style="display:none"></div>
+
+  <form id="oglas-form" enctype="multipart/form-data" onsubmit="submitOglas(event)">
+
+    <!-- POTVRDA IDENTITETA -->
+    <div class="form-card" style="margin:0 0 1.5rem 0;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Potvrda identiteta</h3>
+      <div class="form-group">
+        <label>Lozinka (za potvrdu)</label>
+        <input type="password" id="confirm-lozinka" placeholder="Unesite vasu lozinku" required>
+      </div>
+    </div>
+
+    <!-- OSNOVNO -->
+    <div class="form-card" style="margin:0 0 1.5rem 0;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Osnovno</h3>
+      <div class="form-group">
+        <label>Naziv firme / radnje *</label>
+        <input type="text" name="naziv" placeholder="Naziv vašeg biznisa" required>
+      </div>
+      <div class="form-group">
+        <label>Opis</label>
+        <textarea name="opis" placeholder="Opišite vašu firmu, usluge, proizvode..."></textarea>
+      </div>
+    </div>
+
+    <!-- KATEGORIJA -->
+    <div class="form-card" style="margin:0 0 1.5rem 0;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Kategorija</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Vrsta privrede (Delatnost)</label>
+          <select name="vrsta_privrede" id="sel-vrsta">
+            <option value="">Izaberite delatnost</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tip posla</label>
+          <select name="tip_posla">
+            <option value="">Izaberite tip</option>
+            <option>Produkcija</option>
+            <option>Usluge</option>
+            <option>Trgovina</option>
+            <option>Uvoz</option>
+            <option>Izvoz</option>
+            <option>Distribucija</option>
+            <option>Konsalting</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Radnja / poslovnica</label>
+        <input type="text" name="radnja" placeholder="npr. Maloprodaja, Salon, Kancelarija...">
+      </div>
+    </div>
+
+    <!-- LOKACIJA -->
+    <div class="form-card" style="margin:0 0 1.5rem 0;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Lokacija</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Okrug</label>
+          <input type="text" name="okrug" placeholder="Okrug" list="okrug-list">
+          <datalist id="okrug-list">
+            <option>Beogradski</option><option>Borski</option><option>Braničevski</option>
+            <option>Jablanički</option><option>Južnobanatski</option><option>Južnobački</option>
+            <option>Kolubarski</option><option>Mačvanski</option><option>Moravički</option>
+            <option>Nišavski</option><option>Pčinjski</option><option>Pirotski</option>
+            <option>Podunavski</option><option>Pomoravski</option><option>Rasinski</option>
+            <option>Raški</option><option>Severnobački</option><option>Severnobanatski</option>
+            <option>Srednjebanatski</option><option>Sremski</option><option>Šumadijski</option>
+            <option>Toplički</option><option>Zaječarski</option><option>Zapadnobački</option>
+            <option>Zlatiborski</option>
+          </datalist>
+        </div>
+        <div class="form-group">
+          <label>Grad</label>
+          <input type="text" name="grad" placeholder="Grad" list="grad-list">
+          <datalist id="grad-list">
+            <option>Beograd</option><option>Novi Sad</option><option>Niš</option>
+            <option>Kragujevac</option><option>Subotica</option><option>Zrenjanin</option>
+            <option>Pančevo</option><option>Čačak</option><option>Novi Pazar</option>
+            <option>Smederevo</option><option>Leskovac</option><option>Valjevo</option>
+            <option>Vranje</option><option>Šabac</option><option>Požarevac</option>
+            <option>Sombor</option><option>Zaječar</option><option>Kikinda</option>
+            <option>Pirot</option><option>Jagodina</option><option>Kruševac</option>
+            <option>Užice</option><option>Bor</option><option>Sremska Mitrovica</option>
+          </datalist>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Opština</label>
+          <input type="text" name="opstina" placeholder="Opština">
+        </div>
+        <div class="form-group">
+          <label>Mesna zajednica</label>
+          <input type="text" name="mesna_zajednica" placeholder="Mesna zajednica">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Adresa</label>
+          <input type="text" name="adresa" placeholder="Ulica i broj">
+        </div>
+        <div class="form-group">
+          <label>Poštanski broj</label>
+          <input type="text" name="postanski_broj" placeholder="11000">
+        </div>
+      </div>
+    </div>
+
+    <!-- KONTAKT -->
+    <div class="form-card" style="margin:0 0 1.5rem 0;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Kontakt</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Telefon</label>
+          <input type="tel" name="telefon" placeholder="+381 xx xxx xxxx">
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" name="email" placeholder="kontakt@firma.rs">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Web sajt</label>
+          <input type="url" name="web_sajt" placeholder="https://vasa-firma.rs">
+        </div>
+        <div class="form-group">
+          <label>Video (YouTube link)</label>
+          <input type="url" name="video_url" placeholder="https://youtube.com/watch?v=...">
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIKE -->
+    <div class="form-card" style="margin:0 0 1.5rem 0;">
+      <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Slike (do 5)</h3>
+      <div class="upload-area" onclick="document.getElementById('file-input').click()">
+        <div style="font-size:2rem; margin-bottom:0.5rem;">📷</div>
+        <p>Kliknite za dodavanje slika</p>
+        <p style="font-size:0.8rem; color:var(--text-muted)">JPG, PNG, WEBP • Max 5 slika</p>
+        <input type="file" id="file-input" name="slike" multiple accept="image/*" style="display:none" onchange="previewImages(event)">
+      </div>
+      <div class="upload-preview" id="img-preview"></div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+      <button type="submit" class="btn btn-accent btn-lg">✓ GOTOVO</button>
+      <a href="/nalog.html" class="btn btn-outline btn-lg">IZMENI PODATKE</a>
+      <button type="button" class="btn btn-sm" style="background:#f1f5f9;" onclick="alert('Deklaracija – u pripremi')">POPUNI DEKLARACIJU</button>
+      <button type="button" class="btn btn-sm" style="background:#f1f5f9;" onclick="alert('Uslovi oglasavanja – u pripremi')">USLOVI OGLAŠAVANJA</button>
+    </div>
+  </form>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col"><h4>FIND ME QWIC</h4><p>Srpski poslovni imenik</p></div>
+  </div>
+  <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
+</footer>
+
+<script src="/js/auth.js"></script>
+<script src="/js/search.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  if (!requireAuth()) return;
+  if (!requireOglasivac()) return;
+  updateNav();
+
+  // Populate kategorije
+  const sel = document.getElementById('sel-vrsta');
+  KATEGORIJE.forEach(k => {
+    const opt = document.createElement('option');
+    opt.value = k; opt.textContent = k;
+    sel.appendChild(opt);
+  });
+});
+
+function previewImages(e) {
+  const preview = document.getElementById('img-preview');
+  preview.innerHTML = '';
+  const files = Array.from(e.target.files).slice(0, 5);
+  files.forEach(file => {
+    const reader = new FileReader();
+    reader.onload = ev => {
+      const img = document.createElement('img');
+      img.src = ev.target.result;
+      preview.appendChild(img);
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+async function submitOglas(e) {
+  e.preventDefault();
+  const alertEl = document.getElementById('form-alert');
+  alertEl.style.display = 'none';
+
+  // Verify password first
+  const confirmPw = document.getElementById('confirm-lozinka').value;
+  const user = getUser();
+  if (!confirmPw) { showFormAlert('error', 'Unesite lozinku za potvrdu'); return; }
+
+  // First verify by attempting login
+  try {
+    const verRes = await fetch('/api/auth/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: user.email, lozinka: confirmPw })
+    });
+    if (!verRes.ok) { showFormAlert('error', 'Pogresna lozinka'); return; }
+  } catch(err) { showFormAlert('error', 'Greska pri proveri'); return; }
+
+  const formData = new FormData(e.target);
+  formData.delete('confirm-lozinka');
+
+  try {
+    const res = await fetch('/api/oglasi', {
+      method: 'POST',
+      headers: { 'Authorization': 'Bearer ' + getToken() },
+      body: formData
+    });
+    const data = await res.json();
+    if (!res.ok) { showFormAlert('error', data.error); return; }
+    showFormAlert('success', 'Oglas uspesno postavljen!');
+    setTimeout(() => window.location.href = '/oglas.html?id=' + data.id, 1500);
+  } catch(err) { showFormAlert('error', 'Greska pri postavljanju oglasa.'); }
+}
+
+function showFormAlert(type, msg) {
+  const el = document.getElementById('form-alert');
+  el.className = 'alert alert-' + type;
+  el.textContent = msg;
+  el.style.display = 'block';
+  window.scrollTo(0, 0);
+}
+</script>
+</body>
+</html>

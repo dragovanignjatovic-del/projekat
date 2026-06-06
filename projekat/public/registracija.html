@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registracija – Find Me Qwic</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">FIND ME <span>QWIC</span></a>
+    <nav>
+      <a href="/registracija.html" id="nav-register" class="btn btn-outline btn-sm">Registracija</a>
+      <a href="/registracija.html#login" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
+      <div id="nav-user" style="display:none; align-items:center; gap:0.5rem;">
+        <a href="/nalog.html" id="nav-username" class="btn btn-outline btn-sm"></a>
+        <button onclick="logout()" class="btn btn-sm" style="background:#f1f5f9;color:#64748b;">Odjavi se</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <!-- LOGIN SECTION -->
+  <div class="form-card" id="login-section">
+    <div class="form-title">Prijavi se</div>
+    <div id="login-error" class="alert alert-error" style="display:none"></div>
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="login-email">Email adresa</label>
+        <input type="email" id="login-email" name="email" placeholder="vas@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="login-lozinka">Lozinka</label>
+        <input type="password" id="login-lozinka" name="lozinka" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Prijavi se</button>
+    </form>
+    <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--text-muted)">
+      Nemate nalog? <a href="#register-section" onclick="showSection('register')">Registrujte se</a>
+    </p>
+  </div>
+
+  <!-- REGISTER SECTION -->
+  <div class="form-card" id="register-section" style="max-width:700px;">
+    <div class="form-title">Kreiranje naloga</div>
+
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab('posetilac')">KAO POSETILAC</button>
+      <button class="tab-btn" onclick="switchTab('oglasivac')">KAO OGLASIVAC</button>
+    </div>
+
+    <!-- POSETILAC TAB -->
+    <div class="tab-panel active" id="tab-posetilac">
+      <div id="reg-error-posetilac" class="alert alert-error" style="display:none"></div>
+      <form id="form-posetilac" onsubmit="handleRegister(event, 'posetilac')">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ime</label>
+            <input type="text" name="ime" placeholder="Vaše ime" required>
+          </div>
+          <div class="form-group">
+            <label>Prezime</label>
+            <input type="text" name="prezime" placeholder="Vaše prezime" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mesto</label>
+            <input type="text" name="grad" placeholder="Grad / mesto">
+          </div>
+          <div class="form-group">
+            <label>Ulica i broj</label>
+            <input type="text" name="adresa" placeholder="Ulica i broj">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" name="telefon" placeholder="+381 xx xxx xxxx">
+          </div>
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="vas@email.com" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Korisničko ime</label>
+            <input type="text" name="korisnicko_ime" placeholder="korisnicko_ime">
+          </div>
+          <div class="form-group">
+            <label>Datum rodjenja</label>
+            <input type="date" name="datum_rodjenja">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Lozinka *</label>
+          <input type="password" name="lozinka" placeholder="Min. 6 karaktera" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label>Potvrdi lozinku *</label>
+          <input type="password" name="lozinka2" placeholder="Ponovi lozinku" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Registruj se</button>
+      </form>
+    </div>
+
+    <!-- OGLASIVAC TAB -->
+    <div class="tab-panel" id="tab-oglasivac">
+      <div id="reg-error-oglasivac" class="alert alert-error" style="display:none"></div>
+      <form id="form-oglasivac" onsubmit="handleRegister(event, 'oglasivac')">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Ime</label>
+            <input type="text" name="ime" placeholder="Vaše ime" required>
+          </div>
+          <div class="form-group">
+            <label>Prezime</label>
+            <input type="text" name="prezime" placeholder="Vaše prezime" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Mesto</label>
+            <input type="text" name="grad" placeholder="Grad / mesto">
+          </div>
+          <div class="form-group">
+            <label>Datum rodjenja</label>
+            <input type="date" name="datum_rodjenja">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" placeholder="vas@email.com" required>
+          </div>
+          <div class="form-group">
+            <label>Telefon</label>
+            <input type="tel" name="telefon" placeholder="+381 xx xxx xxxx">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Web sajt</label>
+            <input type="url" name="web_sajt" placeholder="https://vasa-firma.rs">
+          </div>
+          <div class="form-group">
+            <label>Kategorija</label>
+            <select name="vrsta_privrede" id="reg-kategorija">
+              <option value="">Izaberite kategoriju</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Korisničko ime</label>
+            <input type="text" name="korisnicko_ime" placeholder="korisnicko_ime">
+          </div>
+          <div class="form-group">
+            <label>Ulica i broj</label>
+            <input type="text" name="adresa" placeholder="Ulica i broj">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Lozinka *</label>
+          <input type="password" name="lozinka" placeholder="Min. 6 karaktera" required minlength="6">
+        </div>
+        <div class="form-group">
+          <label>Potvrdi lozinku *</label>
+          <input type="password" name="lozinka2" placeholder="Ponovi lozinku" required>
+        </div>
+        <button type="submit" class="btn btn-accent" style="width:100%">Registruj se kao oglasivac</button>
+      </form>
+    </div>
+
+    <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--text-muted)">
+      Vec imate nalog? <a href="#login-section" onclick="showSection('login')">Prijavite se</a>
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>FIND ME QWIC</h4>
+      <p>Srpski poslovni imenik</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
+</footer>
+
+<script src="/js/auth.js"></script>
+<script src="/js/search.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  updateNav();
+  if (isLoggedIn()) { window.location.href = '/'; return; }
+
+  // Populate kategorije in oglasivac form
+  const kat = document.getElementById('reg-kategorija');
+  KATEGORIJE.forEach(k => {
+    const opt = document.createElement('option');
+    opt.value = k; opt.textContent = k;
+    kat.appendChild(opt);
+  });
+
+  // Fix error display
+  document.getElementById('login-error').style.display = '';
+  document.getElementById('reg-error-posetilac').style.display = '';
+  document.getElementById('reg-error-oglasivac').style.display = '';
+
+  // Check hash
+  if (location.hash === '#login' || location.hash === '#login-section') showSection('login');
+  else if (location.hash === '#register' || location.hash === '#register-section') showSection('register');
+});
+
+function showSection(which) {
+  document.getElementById('login-section').style.display = which === 'login' ? 'block' : 'none';
+  document.getElementById('register-section').style.display = which === 'register' ? 'block' : 'none';
+}
+
+// Show both by default
+showSection('login');
+document.getElementById('register-section').style.display = 'block';
+
+function switchTab(tip) {
+  document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', (i === 0 && tip === 'posetilac') || (i === 1 && tip === 'oglasivac')));
+  document.getElementById('tab-posetilac').classList.toggle('active', tip === 'posetilac');
+  document.getElementById('tab-oglasivac').classList.toggle('active', tip === 'oglasivac');
+}
+
+// Override handleRegister to check passwords match
+const _origHandleRegister = handleRegister;
+window.handleRegister = async function(e, tip) {
+  e.preventDefault();
+  const form = e.target;
+  const loz = form.querySelector('[name=lozinka]').value;
+  const loz2 = form.querySelector('[name=lozinka2]').value;
+  const errEl = document.getElementById('reg-error-' + tip);
+  if (loz !== loz2) {
+    errEl.textContent = 'Lozinke se ne poklapaju';
+    errEl.style.display = 'block';
+    return;
+  }
+  errEl.style.display = 'none';
+  await _origHandleRegister(e, tip);
+};
+</script>
+</body>
+</html>

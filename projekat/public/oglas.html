@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oglas – Find Me Qwic</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">FIND ME <span>QWIC</span></a>
+    <nav>
+      <a href="/postavi-oglas.html" id="nav-oglas" class="btn btn-accent btn-sm" style="display:none">+ Postavi oglas</a>
+      <a href="/registracija.html" id="nav-register" class="btn btn-outline btn-sm">Registracija</a>
+      <a href="/registracija.html#login" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
+      <div id="nav-user" style="display:none; align-items:center; gap:0.5rem;">
+        <a href="/nalog.html" id="nav-username" class="btn btn-outline btn-sm"></a>
+        <button onclick="logout()" class="btn btn-sm" style="background:#f1f5f9;color:#64748b;">Odjavi se</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div id="oglas-loading" style="text-align:center; padding:4rem;">
+  <div class="spinner"></div>
+</div>
+
+<div id="oglas-content" style="display:none;">
+  <!-- HERO -->
+  <div class="oglas-hero">
+    <div class="container">
+      <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap; margin-bottom:0.75rem;">
+        <a href="/" style="color:var(--text-muted); font-size:0.85rem; text-decoration:none;">← Nazad</a>
+        <span style="color:var(--border)">|</span>
+        <span id="oglas-badge" class="card-badge"></span>
+        <span id="oglas-tip" style="font-size:0.8rem; color:var(--text-muted);"></span>
+      </div>
+      <h1 id="oglas-naziv" style="font-size:2rem; font-weight:800; margin-bottom:0.5rem;"></h1>
+      <p id="oglas-location" style="color:var(--text-muted);"></p>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="oglas-grid">
+      <!-- LEFT -->
+      <div>
+        <!-- GALLERY -->
+        <div id="oglas-gallery" class="oglas-gallery" style="display:none;"></div>
+
+        <!-- OPIS -->
+        <div id="oglas-opis-section" style="margin-bottom:1.5rem;">
+          <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:0.75rem;">O biznisu</h2>
+          <p id="oglas-opis" style="color:var(--text); line-height:1.7;"></p>
+        </div>
+
+        <!-- VIDEO -->
+        <div id="oglas-video-section" style="display:none; margin-bottom:1.5rem;">
+          <h2 style="font-size:1.1rem; font-weight:700; margin-bottom:0.75rem;">Video</h2>
+          <div class="video-wrap">
+            <iframe id="oglas-video" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <!-- MAP -->
+        <div class="map-placeholder" id="oglas-map">
+          <div style="font-size:1.5rem; margin-bottom:0.5rem;">📍</div>
+          <p id="oglas-map-text"></p>
+        </div>
+
+        <!-- PARTNERI -->
+        <div style="background:var(--surface); border-radius:12px; border:2px dashed var(--border); padding:2rem; text-align:center; margin-bottom:1.5rem;">
+          <h3 style="font-size:1rem; font-weight:700; margin-bottom:0.5rem;">BUDI PARTNER</h3>
+          <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:1rem;">Postanite partner i povecajte vidljivost vaseg biznisa</p>
+          <button class="btn btn-accent">Saznaj vise</button>
+        </div>
+      </div>
+
+      <!-- RIGHT – INFO CARD -->
+      <div>
+        <div class="info-card">
+          <h2 style="font-size:1rem; font-weight:700; margin-bottom:1rem;">Kontakt informacije</h2>
+
+          <div id="info-adresa" class="info-row" style="display:none">
+            <span class="icon">📍</span>
+            <span id="oglas-adresa-text"></span>
+          </div>
+          <div id="info-telefon" class="info-row" style="display:none">
+            <span class="icon">📞</span>
+            <a id="oglas-telefon-link" href="#"></a>
+          </div>
+          <div id="info-email" class="info-row" style="display:none">
+            <span class="icon">✉️</span>
+            <a id="oglas-email-link" href="#"></a>
+          </div>
+          <div id="info-web" class="info-row" style="display:none">
+            <span class="icon">🌐</span>
+            <a id="oglas-web-link" href="#" target="_blank" rel="noopener"></a>
+          </div>
+
+          <hr style="border:none; border-top:1px solid var(--border); margin:1rem 0;">
+
+          <button class="btn btn-primary" style="width:100%; margin-bottom:0.75rem;"
+            onclick="navigator.share ? navigator.share({title: document.title, url: location.href}) : alert('Kopirajte link: ' + location.href)">
+            📤 DELI STRANICU
+          </button>
+
+          <div id="edit-btn-wrap" style="display:none;">
+            <a id="edit-oglas-btn" href="#" class="btn btn-outline" style="width:100%;">✏️ Izmeni oglas</a>
+          </div>
+
+          <div class="visit-counter">
+            👁 <span id="oglas-posete">0</span> pregleda
+          </div>
+        </div>
+
+        <!-- REKLAMNI BANER -->
+        <div style="background:linear-gradient(135deg,#fef3c7,#fde68a); border-radius:12px; padding:1.5rem; text-align:center; margin-top:1rem;">
+          <p style="font-size:0.8rem; color:#92400e; font-weight:600;">REKLAMNI PROSTOR</p>
+          <p style="font-size:0.85rem; color:#92400e; margin-top:0.25rem;">Zainteresovani za oglas? Kontaktirajte nas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="oglas-error" style="display:none; text-align:center; padding:4rem;">
+  <div style="font-size:3rem; margin-bottom:1rem;">😕</div>
+  <h2>Oglas nije pronađen</h2>
+  <a href="/" class="btn btn-primary" style="margin-top:1rem;">Nazad na početnu</a>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col"><h4>FIND ME QWIC</h4><p>Srpski poslovni imenik</p></div>
+    <div class="footer-col">
+      <h4>Podeli</h4>
+      <button class="btn btn-outline btn-sm" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : alert('Kopirajte: '+location.href)">📤 DELI</button>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
+</footer>
+
+<script src="/js/auth.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', async () => {
+  updateNav();
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  if (!id) { showError(); return; }
+
+  try {
+    const res = await fetch('/api/oglasi/' + id);
+    if (!res.ok) { showError(); return; }
+    const o = await res.json();
+    renderOglas(o);
+  } catch(err) { showError(); }
+});
+
+function renderOglas(o) {
+  document.title = o.naziv + ' – Find Me Qwic';
+
+  document.getElementById('oglas-naziv').textContent = o.naziv;
+  document.getElementById('oglas-badge').textContent = o.vrsta_privrede || 'Delatnost';
+  document.getElementById('oglas-tip').textContent = o.tip_posla || '';
+  document.getElementById('oglas-posete').textContent = o.broj_poseta || 0;
+
+  const location = [o.adresa, o.grad, o.okrug, o.drzava].filter(Boolean).join(', ');
+  document.getElementById('oglas-location').textContent = location || 'Srbija';
+  document.getElementById('oglas-map-text').textContent = location || 'Adresa nije navedena';
+
+  if (o.opis) {
+    document.getElementById('oglas-opis').textContent = o.opis;
+  } else {
+    document.getElementById('oglas-opis-section').style.display = 'none';
+  }
+
+  // Gallery
+  if (o.slike && o.slike.length > 0) {
+    const gallery = document.getElementById('oglas-gallery');
+    gallery.style.display = 'grid';
+    gallery.innerHTML = o.slike.slice(0,6).map(s =>
+      `<img src="${s}" alt="${o.naziv}" onclick="window.open('${s}','_blank')" loading="lazy">`
+    ).join('');
+  }
+
+  // Contact info
+  if (o.adresa || o.grad) {
+    document.getElementById('info-adresa').style.display = 'flex';
+    document.getElementById('oglas-adresa-text').textContent = [o.adresa, o.grad, o.postanski_broj].filter(Boolean).join(', ');
+  }
+  if (o.telefon) {
+    document.getElementById('info-telefon').style.display = 'flex';
+    const tLink = document.getElementById('oglas-telefon-link');
+    tLink.href = 'tel:' + o.telefon; tLink.textContent = o.telefon;
+  }
+  if (o.email) {
+    document.getElementById('info-email').style.display = 'flex';
+    const eLink = document.getElementById('oglas-email-link');
+    eLink.href = 'mailto:' + o.email; eLink.textContent = o.email;
+  }
+  if (o.web_sajt) {
+    document.getElementById('info-web').style.display = 'flex';
+    const wLink = document.getElementById('oglas-web-link');
+    wLink.href = o.web_sajt; wLink.textContent = o.web_sajt.replace(/^https?:\/\//, '');
+  }
+
+  // Video
+  if (o.video_url) {
+    const videoSection = document.getElementById('oglas-video-section');
+    videoSection.style.display = 'block';
+    const iframe = document.getElementById('oglas-video');
+    // Convert YouTube watch URL to embed
+    let embedUrl = o.video_url;
+    const ytMatch = o.video_url.match(/(?:youtube\.com\/watch\?v=|youtu\.be\/)([^&\s]+)/);
+    if (ytMatch) embedUrl = 'https://www.youtube.com/embed/' + ytMatch[1];
+    iframe.src = embedUrl;
+  }
+
+  // Edit button for owner
+  const user = getUser();
+  if (user && user.id === o.korisnik_id) {
+    document.getElementById('edit-btn-wrap').style.display = 'block';
+    // Link to edit - for now point to postavi-oglas with id
+    document.getElementById('edit-oglas-btn').href = '/postavi-oglas.html?edit=' + o.id;
+  }
+
+  document.getElementById('oglas-loading').style.display = 'none';
+  document.getElementById('oglas-content').style.display = 'block';
+}
+
+function showError() {
+  document.getElementById('oglas-loading').style.display = 'none';
+  document.getElementById('oglas-error').style.display = 'block';
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Me Qwic - Srpski poslovni imenik</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">FIND ME <span>QWIC</span></a>
+    <nav>
+      <a href="/o-nama.html">O NAMA</a>
+      <select class="lang-select" title="Jezik">
+        <option value="sr">SR</option>
+        <option value="en">EN</option>
+      </select>
+      <a href="/postavi-oglas.html" id="nav-oglas" class="btn btn-accent btn-sm" style="display:none">+ Postavi oglas</a>
+      <a href="/registracija.html" id="nav-register" class="btn btn-outline btn-sm">Registracija</a>
+      <a href="/registracija.html#login" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
+      <div id="nav-user" style="display:none; align-items:center; gap:0.5rem;">
+        <a href="/nalog.html" id="nav-username" class="btn btn-outline btn-sm"></a>
+        <button onclick="logout()" class="btn btn-sm" style="background:#f1f5f9;color:#64748b;">Odjavi se</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <h1>Pronadji lokalne biznise brzo</h1>
+  <p>Srpski poslovni imenik – pretrazi hiljade firmi, radnji i usluga</p>
+
+  <div class="search-box">
+    <form id="search-form">
+      <div class="search-grid">
+        <select id="filter-grad" name="grad">
+          <option value="">Grad / Opstina</option>
+        </select>
+        <select id="filter-delatnost" name="delatnost">
+          <option value="">Delatnost</option>
+        </select>
+        <select id="filter-tip" name="tip">
+          <option value="">Tip posla</option>
+          <option value="Produkcija">Produkcija</option>
+          <option value="Usluge">Usluge</option>
+          <option value="Trgovina">Trgovina</option>
+          <option value="Uvoz">Uvoz</option>
+          <option value="Izvoz">Izvoz</option>
+        </select>
+        <input type="text" id="filter-q" name="q" placeholder="Ime firme ili kljucna rec...">
+      </div>
+      <button type="submit" class="btn btn-primary btn-lg" style="width:100%">🔍 TRAŽI</button>
+    </form>
+  </div>
+</section>
+
+<div class="container">
+  <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; flex-wrap:wrap; gap:1rem;">
+    <span class="section-title">Poslovni oglasi</span>
+    <span id="results-count" style="color:var(--text-muted); font-size:0.9rem;"></span>
+  </div>
+  <div class="cards-grid" id="results-grid">
+    <div class="spinner"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>FIND ME QWIC</h4>
+      <p>Srpski poslovni imenik</p>
+      <p>Pronajdite lokalne biznise</p>
+    </div>
+    <div class="footer-col">
+      <h4>Informacije</h4>
+      <a href="/o-nama.html">O nama</a>
+      <a href="#">Uslovi oglasavanja</a>
+      <a href="#">Politika privatnosti</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontakt</h4>
+      <p>info@findmequic.rs</p>
+      <p>+381 11 000 0000</p>
+    </div>
+    <div class="footer-col">
+      <h4>Podeli sajt</h4>
+      <button class="btn btn-outline btn-sm" onclick="navigator.share ? navigator.share({title:'Find Me Qwic', url: location.href}) : alert('Kopirajte link: ' + location.href)">
+        📤 DELI SAJT
+      </button>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2024 Find Me Qwic. Sva prava zadrzana.
+  </div>
+</footer>
+
+<script src="/js/auth.js"></script>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+</body>
+</html>
