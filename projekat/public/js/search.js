@@ -20,27 +20,37 @@ const KATEGORIJE = [
 
 const DRZAVE = ['Srbija', 'Crna Gora', 'Bosna i Hercegovina', 'Hrvatska', 'Severna Makedonija'];
 
-const GRADOVI = [
-  'Beograd', 'Novi Sad', 'Niš', 'Kragujevac', 'Subotica', 'Zrenjanin',
-  'Pančevo', 'Čačak', 'Novi Pazar', 'Smederevo', 'Leskovac', 'Valjevo',
-  'Vranje', 'Šabac', 'Požarevac', 'Sombor', 'Zaječar', 'Kikinda',
-  'Pirot', 'Jagodina', 'Kruševac', 'Užice', 'Bor', 'Sremska Mitrovica',
-  'Prijepolje', 'Paraćin', 'Vršac', 'Prokuplje', 'Loznica', 'Aleksandrovac'
-];
+const GRADOVI = typeof GRAD_NASELJA !== 'undefined' ? Object.keys(GRAD_NASELJA) : [];
+
+// Populate naselje dropdown based on selected grad/opstina
+function populateNaselja(selectedGrad) {
+  const naseljeSelect = document.getElementById('filter-naselje');
+  if (!naseljeSelect) return;
+  const naselja = (typeof GRAD_NASELJA !== 'undefined' && GRAD_NASELJA[selectedGrad]) || [];
+  naseljeSelect.innerHTML = '<option value="">Sva naselja</option>' +
+    naselja.map(n => `<option value="${n}">${n}</option>`).join('');
+  naseljeSelect.disabled = naselja.length === 0;
+}
 
 // Populate dropdowns
 function populateDropdowns() {
   const drzavaSelect = document.getElementById('filter-drzava');
   const gradSelect = document.getElementById('filter-grad');
   const delatnostSelect = document.getElementById('filter-delatnost');
+  const naseljeSelect = document.getElementById('filter-naselje');
 
   if (drzavaSelect) {
     drzavaSelect.innerHTML = '<option value="">Sve drzave</option>' +
       DRZAVE.map(d => `<option value="${d}">${d}</option>`).join('');
   }
   if (gradSelect) {
-    gradSelect.innerHTML = '<option value="">Svi gradovi</option>' +
+    gradSelect.innerHTML = '<option value="">Grad / Opstina</option>' +
       GRADOVI.map(g => `<option value="${g}">${g}</option>`).join('');
+    gradSelect.addEventListener('change', () => populateNaselja(gradSelect.value));
+  }
+  if (naseljeSelect) {
+    naseljeSelect.innerHTML = '<option value="">Naselje</option>';
+    naseljeSelect.disabled = true;
   }
   if (delatnostSelect) {
     delatnostSelect.innerHTML = '<option value="">Sve delatnosti</option>' +
@@ -127,10 +137,15 @@ function initSearch() {
   const params = getSearchParams();
 
   // Set form values from URL
-  ['ime', 'drzava', 'grad', 'naselje', 'delatnost', 'tip'].forEach(k => {
+  ['ime', 'drzava', 'grad', 'delatnost', 'tip'].forEach(k => {
     const el = document.getElementById('filter-' + k);
     if (el && params[k]) el.value = params[k];
   });
+  if (params.grad) {
+    populateNaselja(params.grad);
+    const naseljeSelect = document.getElementById('filter-naselje');
+    if (naseljeSelect && params.naselje) naseljeSelect.value = params.naselje;
+  }
 
   const form = document.getElementById('search-form');
 
