@@ -18,6 +18,8 @@ const KATEGORIJE = [
   'Umetnost, zabava i rekreacija'
 ];
 
+const DRZAVE = ['Srbija', 'Crna Gora', 'Bosna i Hercegovina', 'Hrvatska', 'Severna Makedonija'];
+
 const GRADOVI = [
   'Beograd', 'Novi Sad', 'Niš', 'Kragujevac', 'Subotica', 'Zrenjanin',
   'Pančevo', 'Čačak', 'Novi Pazar', 'Smederevo', 'Leskovac', 'Valjevo',
@@ -28,9 +30,14 @@ const GRADOVI = [
 
 // Populate dropdowns
 function populateDropdowns() {
+  const drzavaSelect = document.getElementById('filter-drzava');
   const gradSelect = document.getElementById('filter-grad');
   const delatnostSelect = document.getElementById('filter-delatnost');
 
+  if (drzavaSelect) {
+    drzavaSelect.innerHTML = '<option value="">Sve drzave</option>' +
+      DRZAVE.map(d => `<option value="${d}">${d}</option>`).join('');
+  }
   if (gradSelect) {
     gradSelect.innerHTML = '<option value="">Svi gradovi</option>' +
       GRADOVI.map(g => `<option value="${g}">${g}</option>`).join('');
@@ -105,8 +112,10 @@ async function doSearch(params = {}) {
 function getSearchParams() {
   const p = new URLSearchParams(location.search);
   return {
-    q: p.get('q') || '',
+    ime: p.get('ime') || '',
+    drzava: p.get('drzava') || '',
     grad: p.get('grad') || '',
+    naselje: p.get('naselje') || '',
     delatnost: p.get('delatnost') || '',
     tip: p.get('tip') || ''
   };
@@ -118,20 +127,21 @@ function initSearch() {
   const params = getSearchParams();
 
   // Set form values from URL
-  ['q', 'grad', 'delatnost', 'tip'].forEach(k => {
+  ['ime', 'drzava', 'grad', 'naselje', 'delatnost', 'tip'].forEach(k => {
     const el = document.getElementById('filter-' + k);
     if (el && params[k]) el.value = params[k];
   });
 
-  const searchInput = document.getElementById('filter-q');
   const form = document.getElementById('search-form');
 
   if (form) {
     form.addEventListener('submit', e => {
       e.preventDefault();
       const current = {
-        q: document.getElementById('filter-q')?.value || '',
+        ime: document.getElementById('filter-ime')?.value || '',
+        drzava: document.getElementById('filter-drzava')?.value || '',
         grad: document.getElementById('filter-grad')?.value || '',
+        naselje: document.getElementById('filter-naselje')?.value || '',
         delatnost: document.getElementById('filter-delatnost')?.value || '',
         tip: document.getElementById('filter-tip')?.value || ''
       };
