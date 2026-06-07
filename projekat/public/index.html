@@ -29,36 +29,73 @@
 </header>
 
 <section class="hero">
-  <h1>Pronadji lokalne biznise brzo</h1>
-  <p>Srpski poslovni imenik – pretrazi hiljade firmi, radnji i usluga</p>
+  <div class="hero-inner">
+    <div class="hero-stats">
+      <span><strong>Hiljade</strong> firmi</span>
+      <span class="hero-stats-dot">•</span>
+      <span><strong>17</strong> delatnosti</span>
+      <span class="hero-stats-dot">•</span>
+      <span><strong>200+</strong> opština</span>
+    </div>
 
-  <div class="search-box">
-    <form id="search-form">
-      <div class="search-grid">
-        <select id="filter-drzava" name="drzava">
-          <option value="">Drzava</option>
-        </select>
-        <select id="filter-grad" name="grad">
-          <option value="">Grad / Opstina</option>
-        </select>
-        <select id="filter-naselje" name="naselje" disabled>
-          <option value="">Naselje</option>
-        </select>
-        <select id="filter-delatnost" name="delatnost">
-          <option value="">Delatnost</option>
-        </select>
-        <select id="filter-tip" name="tip">
-          <option value="">Tip posla</option>
-          <option value="Produkcija">Produkcija</option>
-          <option value="Usluge">Usluge</option>
-          <option value="Trgovina">Trgovina</option>
-          <option value="Uvoz">Uvoz</option>
-          <option value="Izvoz">Izvoz</option>
-        </select>
-        <input type="text" id="filter-ime" name="ime" placeholder="Ime firme...">
-      </div>
-      <button type="submit" class="btn btn-primary btn-lg">🔍 TRAŽI</button>
-    </form>
+    <h1>Pronađi svaki biznis<br>u Srbiji</h1>
+    <p>Srpski poslovni imenik – pretraži, uporedi i poveži se sa firmama u svakom kraju Srbije.</p>
+
+    <div class="search-box">
+      <form id="search-form">
+        <div class="search-grid">
+          <label class="search-field">
+            <span class="search-field-label">🌍 Država</span>
+            <select id="filter-drzava" name="drzava">
+              <option value="">Drzava</option>
+            </select>
+          </label>
+          <label class="search-field">
+            <span class="search-field-label">📍 Grad / Opština</span>
+            <select id="filter-grad" name="grad">
+              <option value="">Grad / Opstina</option>
+            </select>
+          </label>
+          <label class="search-field">
+            <span class="search-field-label">🏘️ Naselje</span>
+            <select id="filter-naselje" name="naselje" disabled>
+              <option value="">Naselje</option>
+            </select>
+          </label>
+          <label class="search-field">
+            <span class="search-field-label">🏷️ Delatnost</span>
+            <select id="filter-delatnost" name="delatnost">
+              <option value="">Delatnost</option>
+            </select>
+          </label>
+          <label class="search-field">
+            <span class="search-field-label">📋 Tip posla</span>
+            <select id="filter-tip" name="tip">
+              <option value="">Tip posla</option>
+              <option value="Produkcija">Produkcija</option>
+              <option value="Usluge">Usluge</option>
+              <option value="Trgovina">Trgovina</option>
+              <option value="Uvoz">Uvoz</option>
+              <option value="Izvoz">Izvoz</option>
+            </select>
+          </label>
+          <label class="search-field">
+            <span class="search-field-label">🔍 Naziv firme</span>
+            <input type="text" id="filter-ime" name="ime" placeholder="npr. Pekara, Ordinacija...">
+          </label>
+        </div>
+        <button type="submit" class="btn btn-accent btn-lg search-submit">🔍 TRAŽI</button>
+      </form>
+    </div>
+
+    <div class="hero-tags">
+      <span class="hero-tags-label">Popularno:</span>
+      <a class="tag-pill" href="/?delatnost=Ugostiteljstvo i turizam">Restorani</a>
+      <a class="tag-pill" href="/?ime=auto">Auto-servisi</a>
+      <a class="tag-pill" href="/?delatnost=Zdravstvo i socijalna zaštita">Ordinacije</a>
+      <a class="tag-pill" href="/?ime=vinarija">Vinarije</a>
+      <a class="tag-pill" href="/?ime=stolarija">Stolarije</a>
+    </div>
   </div>
 </section>
 
