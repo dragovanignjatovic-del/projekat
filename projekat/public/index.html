@@ -35,9 +35,13 @@
   <div class="search-box">
     <form id="search-form">
       <div class="search-grid">
+        <select id="filter-drzava" name="drzava">
+          <option value="">Drzava</option>
+        </select>
         <select id="filter-grad" name="grad">
           <option value="">Grad / Opstina</option>
         </select>
+        <input type="text" id="filter-naselje" name="naselje" placeholder="Naselje">
         <select id="filter-delatnost" name="delatnost">
           <option value="">Delatnost</option>
         </select>
@@ -49,7 +53,7 @@
           <option value="Uvoz">Uvoz</option>
           <option value="Izvoz">Izvoz</option>
         </select>
-        <input type="text" id="filter-q" name="q" placeholder="Ime firme ili kljucna rec...">
+        <input type="text" id="filter-ime" name="ime" placeholder="Ime firme...">
       </div>
       <button type="submit" class="btn btn-primary btn-lg" style="width:100%">🔍 TRAŽI</button>
     </form>
