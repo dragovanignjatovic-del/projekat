@@ -120,52 +120,135 @@ nav a:hover { color: var(--primary); }
 
 /* HERO / SEARCH SECTION */
 .hero {
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
-  color: var(--text);
+  background: linear-gradient(120deg, #1d4ed8 0%, var(--primary) 55%, #3b82f6 100%);
+  color: #fff;
   padding: var(--space-8) var(--space-4);
-  text-align: center;
+  text-align: left;
 }
 
-.hero h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: var(--space-2); }
-.hero p { font-size: 1rem; color: var(--text-muted); margin-bottom: var(--space-6); }
+.hero-inner { max-width: 1300px; margin: 0 auto; }
+
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: var(--space-4);
+}
+.hero-stats strong { color: #fff; font-weight: 800; }
+.hero-stats-dot { opacity: 0.5; }
+
+.hero h1 {
+  font-size: 2.6rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin-bottom: var(--space-3);
+}
+.hero p {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,0.85);
+  max-width: 640px;
+  margin-bottom: var(--space-6);
+}
 
 .search-box {
   background: var(--surface);
-  border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: var(--space-5);
+  padding: var(--space-4);
   max-width: 1300px;
-  margin: 0 auto;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow-lg);
+}
+
+#search-form {
+  display: flex;
+  align-items: stretch;
+  gap: var(--space-3);
 }
 
 .search-grid {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
+  gap: var(--space-2);
 }
 
-#search-form { text-align: center; }
+.search-field {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+.search-field:hover { background: var(--bg); }
+
+.search-field-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+}
 
 .search-grid select,
 .search-grid input {
   width: 100%;
-  padding: 0.6rem 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  font-size: 0.9rem;
+  border: none;
+  border-radius: 0;
+  font-size: 0.92rem;
+  font-weight: 600;
   color: var(--text);
-  background: var(--bg);
-  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  background: transparent;
+  padding: 0.15rem 0;
 }
 
 .search-grid select:focus,
 .search-grid input:focus {
   outline: none;
-  border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+}
+
+.search-submit {
+  flex-shrink: 0;
+  padding: 0 1.6rem;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+}
+
+/* POPULAR TAGS BELOW SEARCH */
+.hero-tags {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  font-size: 0.85rem;
+}
+.hero-tags-label { color: rgba(255,255,255,0.8); margin-right: 0.25rem; }
+.tag-pill {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.14);
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: background-color 0.15s ease;
+}
+.tag-pill:hover { background: rgba(255,255,255,0.26); }
+
+@media (max-width: 900px) {
+  #search-form { flex-direction: column; }
+  .search-grid { grid-template-columns: repeat(2, 1fr); }
+  .search-submit { width: 100%; padding: 0.75rem; }
+}
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.9rem; }
+  .search-grid { grid-template-columns: 1fr; }
 }
 
 /* CONTAINER */
@@ -421,17 +504,14 @@ footer {
 
 /* RESPONSIVE */
 @media (max-width: 768px) {
-  .hero h1 { font-size: 1.5rem; }
   .oglas-grid { grid-template-columns: 1fr; }
   .nalog-grid { grid-template-columns: 1fr; }
   .postavi-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   .oglas-gallery { grid-template-columns: repeat(2, 1fr); }
   .header-inner { gap: 0.75rem; }
-  .search-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 480px) {
   .cards-grid { grid-template-columns: 1fr; }
-  .search-grid { grid-template-columns: repeat(2, 1fr); }
 }
