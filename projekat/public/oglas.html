@@ -65,7 +65,7 @@
 
         <!-- MAP -->
         <div class="map-placeholder" id="oglas-map">
-          <div style="font-size:1.5rem; margin-bottom:0.5rem;">📍</div>
+          <div style="margin-bottom:0.5rem; display:flex; justify-content:center;"><span data-icon="pin" data-icon-size="24"></span></div>
           <p id="oglas-map-text"></p>
         </div>
 
@@ -83,19 +83,19 @@
           <h2 style="font-size:1rem; font-weight:700; margin-bottom:1rem;">Kontakt informacije</h2>
 
           <div id="info-adresa" class="info-row" style="display:none">
-            <span class="icon">📍</span>
+            <span class="icon" data-icon="pin" data-icon-size="18"></span>
             <span id="oglas-adresa-text"></span>
           </div>
           <div id="info-telefon" class="info-row" style="display:none">
-            <span class="icon">📞</span>
+            <span class="icon" data-icon="phone" data-icon-size="18"></span>
             <a id="oglas-telefon-link" href="#"></a>
           </div>
           <div id="info-email" class="info-row" style="display:none">
-            <span class="icon">✉️</span>
+            <span class="icon" data-icon="mail" data-icon-size="18"></span>
             <a id="oglas-email-link" href="#"></a>
           </div>
           <div id="info-web" class="info-row" style="display:none">
-            <span class="icon">🌐</span>
+            <span class="icon" data-icon="globe" data-icon-size="18"></span>
             <a id="oglas-web-link" href="#" target="_blank" rel="noopener"></a>
           </div>
 
@@ -103,15 +103,15 @@
 
           <button class="btn btn-primary" style="width:100%; margin-bottom:0.75rem;"
             onclick="navigator.share ? navigator.share({title: document.title, url: location.href}) : alert('Kopirajte link: ' + location.href)">
-            📤 DELI STRANICU
+            <span data-icon="share" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>DELI STRANICU
           </button>
 
           <div id="edit-btn-wrap" style="display:none;">
-            <a id="edit-oglas-btn" href="#" class="btn btn-outline" style="width:100%;">✏️ Izmeni oglas</a>
+            <a id="edit-oglas-btn" href="#" class="btn btn-outline" style="width:100%;"><span data-icon="edit" data-icon-size="15" style="display:inline-flex;vertical-align:middle;margin-right:0.3rem"></span>Izmeni oglas</a>
           </div>
 
           <div class="visit-counter">
-            👁 <span id="oglas-posete">0</span> pregleda
+            <span data-icon="eye" data-icon-size="15" style="display:inline-flex;vertical-align:middle;margin-right:0.25rem"></span><span id="oglas-posete">0</span> pregleda
           </div>
         </div>
 
@@ -126,7 +126,7 @@
 </div>
 
 <div id="oglas-error" style="display:none; text-align:center; padding:4rem;">
-  <div style="font-size:3rem; margin-bottom:1rem;">😕</div>
+  <div style="margin-bottom:1rem; display:flex; justify-content:center;"><span data-icon="x" data-icon-size="36"></span></div>
   <h2>Oglas nije pronađen</h2>
   <a href="/" class="btn btn-primary" style="margin-top:1rem;">Nazad na početnu</a>
 </div>
@@ -136,16 +136,18 @@
     <div class="footer-col"><h4>FIND ME QWIC</h4><p>Srpski poslovni imenik</p></div>
     <div class="footer-col">
       <h4>Podeli</h4>
-      <button class="btn btn-outline btn-sm" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : alert('Kopirajte: '+location.href)">📤 DELI</button>
+      <button class="btn btn-outline btn-sm" onclick="navigator.share ? navigator.share({title:document.title,url:location.href}) : alert('Kopirajte: '+location.href)"><span data-icon="share" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.3rem"></span>DELI</button>
     </div>
   </div>
   <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
 </footer>
 
+<script src="/js/icons.js"></script>
 <script src="/js/auth.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', async () => {
   updateNav();
+  renderIcons();
   const params = new URLSearchParams(location.search);
   const id = params.get('id');
   if (!id) { showError(); return; }

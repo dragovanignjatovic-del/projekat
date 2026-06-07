@@ -167,7 +167,7 @@
     <div class="form-card" style="margin:0 0 1.5rem 0;">
       <h3 style="font-size:1.1rem; font-weight:700; margin-bottom:1rem;">Slike (do 5)</h3>
       <div class="upload-area" onclick="document.getElementById('file-input').click()">
-        <div style="font-size:2rem; margin-bottom:0.5rem;">📷</div>
+        <div style="margin-bottom:0.5rem; display:flex; justify-content:center;"><span data-icon="camera" data-icon-size="32"></span></div>
         <p>Kliknite za dodavanje slika</p>
         <p style="font-size:0.8rem; color:var(--text-muted)">JPG, PNG, WEBP • Max 5 slika</p>
         <input type="file" id="file-input" name="slike" multiple accept="image/*" style="display:none" onchange="previewImages(event)">
@@ -177,7 +177,7 @@
 
     <!-- BUTTONS -->
     <div style="display:flex; gap:1rem; flex-wrap:wrap;">
-      <button type="submit" class="btn btn-accent btn-lg">✓ GOTOVO</button>
+      <button type="submit" class="btn btn-accent btn-lg"><span data-icon="check" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>GOTOVO</button>
       <a href="/nalog.html" class="btn btn-outline btn-lg">IZMENI PODATKE</a>
       <button type="button" class="btn btn-sm" style="background:#f1f5f9;" onclick="alert('Deklaracija – u pripremi')">POPUNI DEKLARACIJU</button>
       <button type="button" class="btn btn-sm" style="background:#f1f5f9;" onclick="alert('Uslovi oglasavanja – u pripremi')">USLOVI OGLAŠAVANJA</button>
@@ -192,6 +192,7 @@
   <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
 </footer>
 
+<script src="/js/icons.js"></script>
 <script src="/js/auth.js"></script>
 <script src="/js/search.js"></script>
 <script>
@@ -199,6 +200,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!requireAuth()) return;
   if (!requireOglasivac()) return;
   updateNav();
+  renderIcons();
 
   // Populate kategorije
   const sel = document.getElementById('sel-vrsta');

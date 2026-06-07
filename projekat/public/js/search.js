@@ -86,27 +86,29 @@ function renderCards(oglasi, container) {
   if (!oglasi || oglasi.length === 0) {
     container.innerHTML = `
       <div class="empty-state" style="grid-column:1/-1">
-        <div class="icon">🔍</div>
+        <div class="icon" data-icon="search" data-icon-size="32"></div>
         <p>Nema rezultata. Pokusajte drugaciju pretragu.</p>
       </div>`;
+    if (window.renderIcons) renderIcons(container);
     return;
   }
   container.innerHTML = oglasi.map(o => {
     const imgSrc = o.slike && o.slike[0] ? o.slike[0] : null;
     const imgHtml = imgSrc
       ? `<div class="card-img"><img src="${imgSrc}" alt="${o.naziv}" loading="lazy"></div>`
-      : `<div class="card-img">🏢</div>`;
+      : `<div class="card-img"><span data-icon="building" data-icon-size="32"></span></div>`;
     return `
       <a class="card" href="/oglas.html?id=${o.id}">
         ${imgHtml}
         <div class="card-body">
           <div class="card-badge">${o.vrsta_privrede || 'Delatnost'}</div>
           <div class="card-title">${o.naziv}</div>
-          <div class="card-location">📍 ${[o.grad, o.okrug].filter(Boolean).join(', ') || 'Srbija'}</div>
+          <div class="card-location"><span data-icon="pin" data-icon-size="14" style="display:inline-flex;vertical-align:middle;margin-right:0.25rem"></span>${[o.grad, o.okrug].filter(Boolean).join(', ') || 'Srbija'}</div>
           <div class="card-desc">${o.opis || ''}</div>
         </div>
       </a>`;
   }).join('');
+  if (window.renderIcons) renderIcons(container);
 }
 
 // Search with debounce

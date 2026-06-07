@@ -26,11 +26,11 @@
 <div class="container">
   <div class="nalog-grid">
     <aside class="nalog-menu">
-      <a href="#licni-podaci" class="active" onclick="showSection('licni-podaci', this)">👤 Lični podaci</a>
-      <a href="#kontakt" onclick="showSection('kontakt', this)">📞 Kontakt</a>
-      <a href="#lozinka" onclick="showSection('lozinka', this)">🔒 Lozinka</a>
-      <a href="#email" onclick="showSection('email', this)">✉️ Email</a>
-      <a href="#moji-oglasi" onclick="showSection('moji-oglasi', this)">📋 Moji oglasi</a>
+      <a href="#licni-podaci" class="active" onclick="showSection('licni-podaci', this)"><span data-icon="user" data-icon-size="15" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Lični podaci</a>
+      <a href="#kontakt" onclick="showSection('kontakt', this)"><span data-icon="phone" data-icon-size="15" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Kontakt</a>
+      <a href="#lozinka" onclick="showSection('lozinka', this)"><span data-icon="lock" data-icon-size="15" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Lozinka</a>
+      <a href="#email" onclick="showSection('email', this)"><span data-icon="mail" data-icon-size="15" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Email</a>
+      <a href="#moji-oglasi" onclick="showSection('moji-oglasi', this)"><span data-icon="file" data-icon-size="15" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Moji oglasi</a>
     </aside>
 
     <div class="nalog-content">
@@ -162,6 +162,7 @@
   <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
 </footer>
 
+<script src="/js/icons.js"></script>
 <script src="/js/auth.js"></script>
 <script>
 let currentUser = null;
@@ -169,6 +170,7 @@ let currentUser = null;
 document.addEventListener('DOMContentLoaded', async () => {
   if (!requireAuth()) return;
   updateNav();
+  renderIcons();
   currentUser = await fetchMe();
   if (!currentUser) { window.location.href = '/prijava.html'; return; }
   populateForm(currentUser);

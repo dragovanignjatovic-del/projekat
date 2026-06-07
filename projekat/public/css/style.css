@@ -402,7 +402,10 @@ nav a:hover { color: var(--primary); }
   color: var(--text-muted);
   font-size: 0.9rem;
   pointer-events: none;
+  display: inline-flex;
 }
+.icon-wrap { display: inline-flex; vertical-align: middle; }
+.icon-wrap svg { display: block; }
 .input-icon input,
 .input-icon select { padding-left: 2.5rem; }
 
