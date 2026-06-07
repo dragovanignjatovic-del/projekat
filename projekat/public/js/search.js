@@ -32,6 +32,25 @@ function populateNaselja(selectedGrad) {
   naseljeSelect.disabled = naselja.length === 0;
 }
 
+// Show Grad/Opstina and Naselje filters only when Drzava is Srbija
+function toggleSrbijaFilters() {
+  const drzavaSelect = document.getElementById('filter-drzava');
+  const gradSelect = document.getElementById('filter-grad');
+  const naseljeSelect = document.getElementById('filter-naselje');
+  if (!drzavaSelect || !gradSelect || !naseljeSelect) return;
+
+  const isSrbija = drzavaSelect.value === 'Srbija';
+  gradSelect.style.display = isSrbija ? '' : 'none';
+  naseljeSelect.style.display = isSrbija ? '' : 'none';
+
+  if (!isSrbija) {
+    gradSelect.value = '';
+    naseljeSelect.value = '';
+    naseljeSelect.innerHTML = '<option value="">Naselje</option>';
+    naseljeSelect.disabled = true;
+  }
+}
+
 // Populate dropdowns
 function populateDropdowns() {
   const drzavaSelect = document.getElementById('filter-drzava');
@@ -42,6 +61,8 @@ function populateDropdowns() {
   if (drzavaSelect) {
     drzavaSelect.innerHTML = '<option value="">Sve drzave</option>' +
       DRZAVE.map(d => `<option value="${d}">${d}</option>`).join('');
+    drzavaSelect.value = 'Srbija';
+    drzavaSelect.addEventListener('change', toggleSrbijaFilters);
   }
   if (gradSelect) {
     gradSelect.innerHTML = '<option value="">Grad / Opstina</option>' +
@@ -56,6 +77,7 @@ function populateDropdowns() {
     delatnostSelect.innerHTML = '<option value="">Sve delatnosti</option>' +
       KATEGORIJE.map(k => `<option value="${k}">${k}</option>`).join('');
   }
+  toggleSrbijaFilters();
 }
 
 // Render business cards
@@ -141,7 +163,8 @@ function initSearch() {
     const el = document.getElementById('filter-' + k);
     if (el && params[k]) el.value = params[k];
   });
-  if (params.grad) {
+  toggleSrbijaFilters();
+  if (params.grad && document.getElementById('filter-drzava')?.value === 'Srbija') {
     populateNaselja(params.grad);
     const naseljeSelect = document.getElementById('filter-naselje');
     if (naseljeSelect && params.naselje) naseljeSelect.value = params.naselje;
