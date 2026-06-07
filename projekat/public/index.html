@@ -45,31 +45,31 @@
       <form id="search-form">
         <div class="search-grid">
           <label class="search-field">
-            <span class="search-field-label">🌍 Država</span>
+            <span class="search-field-label"><span data-icon="globe" data-icon-size="13" style="display:inline-flex;vertical-align:middle;margin-right:0.25rem"></span>Država</span>
             <select id="filter-drzava" name="drzava">
               <option value="">Drzava</option>
             </select>
           </label>
           <label class="search-field">
-            <span class="search-field-label">📍 Grad / Opština</span>
+            <span class="search-field-label"><span data-icon="pin" data-icon-size="13" style="display:inline-flex;vertical-align:middle;margin-right:0.25rem"></span>Grad / Opština</span>
             <select id="filter-grad" name="grad">
               <option value="">Grad / Opstina</option>
             </select>
           </label>
           <label class="search-field">
-            <span class="search-field-label">🏘️ Naselje</span>
+            <span class="search-field-label"><span data-icon="building" data-icon-size="13" style="display:inline-flex;vertical-align:middle;margin-right:0.25rem"></span>Naselje</span>
             <select id="filter-naselje" name="naselje" disabled>
               <option value="">Naselje</option>
             </select>
           </label>
           <label class="search-field">
-            <span class="search-field-label">🏷️ Delatnost</span>
+            <span class="search-field-label"><span data-icon="store" data-icon-size="13" style="display:inline-flex;vertical-align:middle;margin-right:0.25rem"></span>Delatnost</span>
             <select id="filter-delatnost" name="delatnost">
               <option value="">Delatnost</option>
             </select>
           </label>
           <label class="search-field">
-            <span class="search-field-label">📋 Tip posla</span>
+            <span class="search-field-label"><span data-icon="file" data-icon-size="13" style="display:inline-flex;vertical-align:middle;margin-right:0.25rem"></span>Tip posla</span>
             <select id="filter-tip" name="tip">
               <option value="">Tip posla</option>
               <option value="Produkcija">Produkcija</option>
@@ -80,11 +80,11 @@
             </select>
           </label>
           <label class="search-field">
-            <span class="search-field-label">🔍 Naziv firme</span>
+            <span class="search-field-label"><span data-icon="search" data-icon-size="13" style="display:inline-flex;vertical-align:middle;margin-right:0.25rem"></span>Naziv firme</span>
             <input type="text" id="filter-ime" name="ime" placeholder="npr. Pekara, Ordinacija...">
           </label>
         </div>
-        <button type="submit" class="btn btn-accent btn-lg search-submit">🔍 TRAŽI</button>
+        <button type="submit" class="btn btn-accent btn-lg search-submit"><span data-icon="search" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>TRAŽI</button>
       </form>
     </div>
 
@@ -130,7 +130,7 @@
     <div class="footer-col">
       <h4>Podeli sajt</h4>
       <button class="btn btn-outline btn-sm" onclick="navigator.share ? navigator.share({title:'Find Me Qwic', url: location.href}) : alert('Kopirajte link: ' + location.href)">
-        📤 DELI SAJT
+        <span data-icon="share" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>DELI SAJT
       </button>
     </div>
   </div>
@@ -139,9 +139,11 @@
   </div>
 </footer>
 
+<script src="/js/icons.js"></script>
 <script src="/js/auth.js"></script>
 <script src="/js/gradovi-naselja.js"></script>
 <script src="/js/search.js"></script>
 <script src="/js/main.js"></script>
+<script>document.addEventListener('DOMContentLoaded', renderIcons);</script>
 </body>
 </html>

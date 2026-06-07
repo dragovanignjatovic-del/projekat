@@ -28,8 +28,8 @@
     <div class="form-title">Kreiranje naloga</div>
 
     <div class="tabs">
-      <button class="tab-btn active" onclick="switchTab('posetilac')">👤 Registracija posetioca</button>
-      <button class="tab-btn" onclick="switchTab('oglasivac')">🏢 Registracija oglašivača</button>
+      <button class="tab-btn active" onclick="switchTab('posetilac')"><span data-icon="user" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Registracija posetioca</button>
+      <button class="tab-btn" onclick="switchTab('oglasivac')"><span data-icon="building" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Registracija oglašivača</button>
     </div>
 
     <!-- POSETILAC TAB -->
@@ -40,46 +40,46 @@
         <div class="form-row">
           <div class="form-group">
             <label>Ime *</label>
-            <div class="input-icon"><span class="input-icon-glyph">👤</span><input type="text" name="ime" placeholder="npr. Marko" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="user" data-icon-size="16"></span><input type="text" name="ime" placeholder="npr. Marko" required></div>
           </div>
           <div class="form-group">
             <label>Prezime *</label>
-            <div class="input-icon"><span class="input-icon-glyph">👤</span><input type="text" name="prezime" placeholder="npr. Petrović" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="user" data-icon-size="16"></span><input type="text" name="prezime" placeholder="npr. Petrović" required></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Mesto *</label>
-            <div class="input-icon"><span class="input-icon-glyph">📍</span><input type="text" name="grad" placeholder="npr. Novi Sad" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="pin" data-icon-size="16"></span><input type="text" name="grad" placeholder="npr. Novi Sad" required></div>
           </div>
           <div class="form-group">
             <label>Ulica i broj</label>
-            <div class="input-icon"><span class="input-icon-glyph">🏠</span><input type="text" name="adresa" placeholder="npr. Zmaj Jovina 5"></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="building" data-icon-size="16"></span><input type="text" name="adresa" placeholder="npr. Zmaj Jovina 5"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Telefon *</label>
-            <div class="input-icon"><span class="input-icon-glyph">📞</span><input type="tel" name="telefon" placeholder="06x xxx xxxx" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="phone" data-icon-size="16"></span><input type="tel" name="telefon" placeholder="06x xxx xxxx" required></div>
           </div>
           <div class="form-group">
             <label>E-mail *</label>
-            <div class="input-icon"><span class="input-icon-glyph">✉️</span><input type="email" name="email" placeholder="ime@email.com" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="mail" data-icon-size="16"></span><input type="email" name="email" placeholder="ime@email.com" required></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Korisničko ime *</label>
-            <div class="input-icon"><span class="input-icon-glyph">👤</span><input type="text" name="korisnicko_ime" placeholder="korisnik123" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="user" data-icon-size="16"></span><input type="text" name="korisnicko_ime" placeholder="korisnik123" required></div>
           </div>
           <div class="form-group">
             <label>Lozinka *</label>
-            <div class="input-icon"><span class="input-icon-glyph">🔒</span><input type="password" name="lozinka" placeholder="••••••••" required minlength="6"></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="lock" data-icon-size="16"></span><input type="password" name="lozinka" placeholder="••••••••" required minlength="6"></div>
           </div>
         </div>
         <div class="form-group">
           <label>Datum rođenja</label>
-          <div class="input-icon"><span class="input-icon-glyph">📅</span><input type="date" name="datum_rodjenja"></div>
+          <div class="input-icon"><span class="input-icon-glyph" data-icon="calendar" data-icon-size="16"></span><input type="date" name="datum_rodjenja"></div>
         </div>
         <div class="form-group">
           <label>Potvrdi lozinku *</label>
@@ -88,8 +88,8 @@
 
         <div class="confirm-label">Potvrdi registraciju putem</div>
         <div class="confirm-methods">
-          <label class="confirm-method"><input type="radio" name="potvrda_posetilac" value="email" checked> ✉️ E-maila</label>
-          <label class="confirm-method"><input type="radio" name="potvrda_posetilac" value="telefon"> 📞 Telefona</label>
+          <label class="confirm-method"><input type="radio" name="potvrda_posetilac" value="email" checked> <span data-icon="mail" data-icon-size="14" style="display:inline-flex;vertical-align:middle;margin-right:0.3rem"></span>E-maila</label>
+          <label class="confirm-method"><input type="radio" name="potvrda_posetilac" value="telefon"> <span data-icon="phone" data-icon-size="14" style="display:inline-flex;vertical-align:middle;margin-right:0.3rem"></span>Telefona</label>
         </div>
 
         <label class="checkbox-row">
@@ -97,7 +97,7 @@
           <span>Prihvatam <a href="#">uslove korišćenja</a> i politiku privatnosti Find Me Qwic portala.</span>
         </label>
 
-        <button type="submit" class="btn btn-accent btn-block">✓ Registruj se</button>
+        <button type="submit" class="btn btn-accent btn-block"><span data-icon="check" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Registruj se</button>
       </form>
       <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--text-muted)">
         Već imaš nalog? <a href="/prijava.html">Prijavi se</a>
@@ -112,37 +112,37 @@
         <div class="form-row">
           <div class="form-group">
             <label>Ime *</label>
-            <div class="input-icon"><span class="input-icon-glyph">👤</span><input type="text" name="ime" placeholder="npr. Ana" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="user" data-icon-size="16"></span><input type="text" name="ime" placeholder="npr. Ana" required></div>
           </div>
           <div class="form-group">
             <label>Prezime *</label>
-            <div class="input-icon"><span class="input-icon-glyph">👤</span><input type="text" name="prezime" placeholder="npr. Jovanović" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="user" data-icon-size="16"></span><input type="text" name="prezime" placeholder="npr. Jovanović" required></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Mesto *</label>
-            <div class="input-icon"><span class="input-icon-glyph">📍</span><input type="text" name="grad" placeholder="npr. Kragujevac" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="pin" data-icon-size="16"></span><input type="text" name="grad" placeholder="npr. Kragujevac" required></div>
           </div>
           <div class="form-group">
             <label>Datum rođenja</label>
-            <div class="input-icon"><span class="input-icon-glyph">📅</span><input type="date" name="datum_rodjenja"></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="calendar" data-icon-size="16"></span><input type="date" name="datum_rodjenja"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>E-mail *</label>
-            <div class="input-icon"><span class="input-icon-glyph">✉️</span><input type="email" name="email" placeholder="firma@email.com" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="mail" data-icon-size="16"></span><input type="email" name="email" placeholder="firma@email.com" required></div>
           </div>
           <div class="form-group">
             <label>Telefon *</label>
-            <div class="input-icon"><span class="input-icon-glyph">📞</span><input type="tel" name="telefon" placeholder="06x xxx xxxx" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="phone" data-icon-size="16"></span><input type="tel" name="telefon" placeholder="06x xxx xxxx" required></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Web sajt</label>
-            <div class="input-icon"><span class="input-icon-glyph">🌐</span><input type="url" name="web_sajt" placeholder="www.firma.rs"></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="globe" data-icon-size="16"></span><input type="url" name="web_sajt" placeholder="www.firma.rs"></div>
           </div>
           <div class="form-group">
             <label>Kategorija delatnosti *</label>
@@ -154,17 +154,17 @@
         <div class="form-row">
           <div class="form-group">
             <label>Korisničko ime *</label>
-            <div class="input-icon"><span class="input-icon-glyph">👤</span><input type="text" name="korisnicko_ime" placeholder="firma123" required></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="user" data-icon-size="16"></span><input type="text" name="korisnicko_ime" placeholder="firma123" required></div>
           </div>
           <div class="form-group">
             <label>Lozinka *</label>
-            <div class="input-icon"><span class="input-icon-glyph">🔒</span><input type="password" name="lozinka" placeholder="••••••••" required minlength="6"></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="lock" data-icon-size="16"></span><input type="password" name="lozinka" placeholder="••••••••" required minlength="6"></div>
           </div>
         </div>
         <div class="form-row">
           <div class="form-group">
             <label>Ulica i broj</label>
-            <div class="input-icon"><span class="input-icon-glyph">🏠</span><input type="text" name="adresa" placeholder="npr. Kralja Petra 18"></div>
+            <div class="input-icon"><span class="input-icon-glyph" data-icon="building" data-icon-size="16"></span><input type="text" name="adresa" placeholder="npr. Kralja Petra 18"></div>
           </div>
           <div class="form-group">
             <label>Potvrdi lozinku *</label>
@@ -174,8 +174,8 @@
 
         <div class="confirm-label">Potvrdi registraciju putem</div>
         <div class="confirm-methods">
-          <label class="confirm-method"><input type="radio" name="potvrda_oglasivac" value="email" checked> ✉️ E-maila</label>
-          <label class="confirm-method"><input type="radio" name="potvrda_oglasivac" value="telefon"> 📞 Telefona</label>
+          <label class="confirm-method"><input type="radio" name="potvrda_oglasivac" value="email" checked> <span data-icon="mail" data-icon-size="14" style="display:inline-flex;vertical-align:middle;margin-right:0.3rem"></span>E-maila</label>
+          <label class="confirm-method"><input type="radio" name="potvrda_oglasivac" value="telefon"> <span data-icon="phone" data-icon-size="14" style="display:inline-flex;vertical-align:middle;margin-right:0.3rem"></span>Telefona</label>
         </div>
 
         <label class="checkbox-row">
@@ -183,7 +183,7 @@
           <span>Prihvatam <a href="#">uslove korišćenja</a> i politiku privatnosti Find Me Qwic portala.</span>
         </label>
 
-        <button type="submit" class="btn btn-accent btn-block">✓ Registruj se</button>
+        <button type="submit" class="btn btn-accent btn-block"><span data-icon="check" data-icon-size="16" style="display:inline-flex;vertical-align:middle;margin-right:0.4rem"></span>Registruj se</button>
       </form>
       <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--text-muted)">
         Već imaš nalog? <a href="/prijava.html">Prijavi se</a>
@@ -202,11 +202,13 @@
   <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
 </footer>
 
+<script src="/js/icons.js"></script>
 <script src="/js/auth.js"></script>
 <script src="/js/search.js"></script>
 <script>
 document.addEventListener('DOMContentLoaded', () => {
   updateNav();
+  renderIcons();
   if (isLoggedIn()) { window.location.href = '/'; return; }
 
   // Populate kategorije in oglasivac form
