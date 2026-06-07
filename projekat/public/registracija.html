@@ -13,7 +13,7 @@
     <a href="/" class="logo">FIND ME <span>QWIC</span></a>
     <nav>
       <a href="/registracija.html" id="nav-register" class="btn btn-outline btn-sm">Registracija</a>
-      <a href="/registracija.html#login" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
+      <a href="/prijava.html" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
       <div id="nav-user" style="display:none; align-items:center; gap:0.5rem;">
         <a href="/nalog.html" id="nav-username" class="btn btn-outline btn-sm"></a>
         <button onclick="logout()" class="btn btn-sm" style="background:#f1f5f9;color:#64748b;">Odjavi se</button>
@@ -23,26 +23,6 @@
 </header>
 
 <div class="container">
-  <!-- LOGIN SECTION -->
-  <div class="form-card" id="login-section">
-    <div class="form-title">Prijavi se</div>
-    <div id="login-error" class="alert alert-error" style="display:none"></div>
-    <form id="login-form" onsubmit="handleLogin(event)">
-      <div class="form-group">
-        <label for="login-email">Email adresa</label>
-        <input type="email" id="login-email" name="email" placeholder="vas@email.com" required>
-      </div>
-      <div class="form-group">
-        <label for="login-lozinka">Lozinka</label>
-        <input type="password" id="login-lozinka" name="lozinka" placeholder="••••••••" required>
-      </div>
-      <button type="submit" class="btn btn-primary" style="width:100%">Prijavi se</button>
-    </form>
-    <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--text-muted)">
-      Nemate nalog? <a href="#register-section" onclick="showSection('register')">Registrujte se</a>
-    </p>
-  </div>
-
   <!-- REGISTER SECTION -->
   <div class="form-card" id="register-section" style="max-width:700px;">
     <div class="form-title">Kreiranje naloga</div>
@@ -120,7 +100,7 @@
         <button type="submit" class="btn btn-accent btn-block">✓ Registruj se</button>
       </form>
       <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--text-muted)">
-        Već imaš nalog? <a href="#login-section" onclick="showSection('login')">Prijavi se</a>
+        Već imaš nalog? <a href="/prijava.html">Prijavi se</a>
       </p>
     </div>
 
@@ -206,7 +186,7 @@
         <button type="submit" class="btn btn-accent btn-block">✓ Registruj se</button>
       </form>
       <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--text-muted)">
-        Već imaš nalog? <a href="#login-section" onclick="showSection('login')">Prijavi se</a>
+        Već imaš nalog? <a href="/prijava.html">Prijavi se</a>
       </p>
     </div>
   </div>
@@ -238,23 +218,9 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   // Fix error display
-  document.getElementById('login-error').style.display = '';
   document.getElementById('reg-error-posetilac').style.display = '';
   document.getElementById('reg-error-oglasivac').style.display = '';
-
-  // Check hash
-  if (location.hash === '#login' || location.hash === '#login-section') showSection('login');
-  else if (location.hash === '#register' || location.hash === '#register-section') showSection('register');
 });
-
-function showSection(which) {
-  document.getElementById('login-section').style.display = which === 'login' ? 'block' : 'none';
-  document.getElementById('register-section').style.display = which === 'register' ? 'block' : 'none';
-}
-
-// Show both by default
-showSection('login');
-document.getElementById('register-section').style.display = 'block';
 
 function switchTab(tip) {
   document.querySelectorAll('.tab-btn').forEach((b, i) => b.classList.toggle('active', (i === 0 && tip === 'posetilac') || (i === 1 && tip === 'oglasivac')));
