@@ -14,7 +14,7 @@
     <nav>
       <a href="/postavi-oglas.html" id="nav-oglas" class="btn btn-accent btn-sm" style="display:none">+ Postavi oglas</a>
       <a href="/registracija.html" id="nav-register" class="btn btn-outline btn-sm">Registracija</a>
-      <a href="/registracija.html#login" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
+      <a href="/prijava.html" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
       <div id="nav-user" style="display:none; align-items:center; gap:0.5rem;">
         <a href="/nalog.html" id="nav-username" class="btn btn-outline btn-sm"></a>
         <button onclick="logout()" class="btn btn-sm" style="background:#f1f5f9;color:#64748b;">Odjavi se</button>
@@ -170,7 +170,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!requireAuth()) return;
   updateNav();
   currentUser = await fetchMe();
-  if (!currentUser) { window.location.href = '/registracija.html#login'; return; }
+  if (!currentUser) { window.location.href = '/prijava.html'; return; }
   populateForm(currentUser);
 });
 

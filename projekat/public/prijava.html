@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prijava – Find Me Qwic</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <a href="/" class="logo">FIND ME <span>QWIC</span></a>
+    <nav>
+      <a href="/registracija.html" id="nav-register" class="btn btn-outline btn-sm">Registracija</a>
+      <a href="/prijava.html" id="nav-login" class="btn btn-primary btn-sm">Prijavi se</a>
+      <div id="nav-user" style="display:none; align-items:center; gap:0.5rem;">
+        <a href="/nalog.html" id="nav-username" class="btn btn-outline btn-sm"></a>
+        <button onclick="logout()" class="btn btn-sm" style="background:#f1f5f9;color:#64748b;">Odjavi se</button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+  <div class="form-card" id="login-section">
+    <div class="form-title">Prijavi se</div>
+    <div id="login-error" class="alert alert-error" style="display:none"></div>
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label for="login-email">Email adresa</label>
+        <input type="email" id="login-email" name="email" placeholder="vas@email.com" required>
+      </div>
+      <div class="form-group">
+        <label for="login-lozinka">Lozinka</label>
+        <input type="password" id="login-lozinka" name="lozinka" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%">Prijavi se</button>
+    </form>
+    <p style="text-align:center; margin-top:1rem; font-size:0.9rem; color:var(--text-muted)">
+      Nemate nalog? <a href="/registracija.html">Registrujte se</a>
+    </p>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col">
+      <h4>FIND ME QWIC</h4>
+      <p>Srpski poslovni imenik</p>
+    </div>
+  </div>
+  <div class="footer-bottom">&copy; 2024 Find Me Qwic</div>
+</footer>
+
+<script src="/js/auth.js"></script>
+<script src="/js/search.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  updateNav();
+  if (isLoggedIn()) { window.location.href = '/'; return; }
+  document.getElementById('login-error').style.display = '';
+});
+</script>
+</body>
+</html>
